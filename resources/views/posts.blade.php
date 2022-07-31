@@ -11,8 +11,8 @@
                     <h5 class="card-title">{{$post->title}}</h5>
                     <div class="form-group row">
 
-                            <img class="col-6 offset-3" src="{{url('storage/'.$post->image)}}" alt="">
-                            <input class="col-12 mt-4" type="file" name="file">
+                        <img class="col-6 offset-3" src="{{url('storage/'.$post->image)}}" alt="">
+                        <input class="col-12 mt-4" type="file" name="file">
                     </div>
                     <p class="card-text">
                         {{ $post->get_excerpt }}

@@ -1,0 +1,11 @@
+:root {
+    --primary: rgb(127, 3, 209);
+}
+
+body {
+    background: rgb(15, 43, 75);
+}
+
+nav {
+    background: var(--primary);
+}

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\PostController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -21,4 +23,8 @@ Route::get('blog/{post:slug}', [PageController::class, 'post'])->name('post');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::resource('/posts', PostController::class)
+    ->middleware('auth')
+    ->except('show');

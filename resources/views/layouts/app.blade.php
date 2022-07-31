@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Blog</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,20 +18,25 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <style>
-    /* :root {
-        --primary: rgb(127, 3, 209);
+    :root {
+        --primary: rgb(55, 90, 127);
     }
 
+    /*
     body {
         background: rgb(15, 43, 75);
     }
-
+*/
     nav {
         color: white !important;
         background: var(--primary);
-    } */
+    }
 
-    .edit{
+    .navbar a {
+        color: #fff !important;
+    }
+
+    .edit {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -41,10 +46,10 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    Blog
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

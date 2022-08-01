@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -43,15 +44,15 @@ class PostController extends Controller
         // dd($request->all());
 
         $post = Post::create([
-            "user_id" => auth()->user()->id
+            'user_id' => auth()->user()->id
         ] + $request->all());
 
-        if ($request->file("file")) {
+        if ($request->file('file')) {
 
-            $post->image = $request->file("file")->store("posts", "public");
+            $post->image = $request->file('file')->store('posts', 'public');
             $post->save();
         }
-        return back()->with("status", "Publicado con exito");
+        return back()->with('status', 'Publicado con exito');
     }
 
     /**
@@ -73,7 +74,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('posts.edit');
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -83,20 +84,34 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $post->update($request->all());
+
+        // imagen
+        if($request->file('file'))
+        {
+            //eliminar imagen
+            Storage::disk('public')->delete($post->image);
+
+            $post->image = $request->file('file')->store('posts','public');
+            $post->save();
+        }
+
+        return back()->with('status','Actualizado con éxito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Post  $post
+     * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
     public function destroy(Post $post)
     {
-        //
+        Storage::disk('public')->delete($post->image);
+        $post->delete();
+
+        return back()->with('status','Eliminado Con éxito');
     }
 }
-?>

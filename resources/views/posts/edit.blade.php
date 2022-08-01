@@ -9,9 +9,9 @@
 
                 <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
 
                     <form action="{{ route('posts.update', $post) }}" method="POST" enctype="multipart/form-data">
@@ -34,7 +34,7 @@
                         <div class="form-group">
                             @csrf
                             @method('PUT')
-                            <button type="submit" class="btn btn-primary">Actualizar</button>
+                            <input type="submit" value="Actualizar" class="btn btn-sm btn-primary">
                         </div>
                     </form>
                 </div>

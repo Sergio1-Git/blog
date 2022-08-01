@@ -8,12 +8,17 @@
 
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">{{$post->title}}</h5>
-                    <div class="form-group row">
 
-                        <img class="col-6 offset-3" src="{{url('storage/'.$post->image)}}" alt="">
-                        <input class="col-12 mt-4" type="file" name="file">
+                    @if($post->image)
+                    <!-- <img class="card-img-top" src="{{url('storage/'.$post->image)}}" alt=""> -->
+                    <img class="card-img-top" src="{{ $post->get_image }}" alt="">
+                    @elseif($post->iframe)
+                    <div class="embed-responsive embed-responsive-16by9">
+                        {!! $post->iframe !! }
                     </div>
+                    @endif
+                    <h5 class="card-title">{{$post->title}}</h5>
+
                     <p class="card-text">
                         {{ $post->get_excerpt }}
                         <a href="{{ route('post', $post) }}">Leer más</a>

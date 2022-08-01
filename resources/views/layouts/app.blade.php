@@ -28,11 +28,11 @@
     }
 */
     nav {
-        color: white !important;
         background: var(--primary);
     }
 
-    .navbar a {
+    .navbar .navbar-brand,
+    .navbar .nav-link {
         color: #fff !important;
     }
 
@@ -42,6 +42,19 @@
         align-items: center;
         padding: 5px 10px;
     }
+
+    nav .bi {
+        font-size: 23px;
+    }
+
+    .nav-link {
+        display: flex;
+        align-items: center;
+    }
+
+    .logout {
+display: flex;
+align-items: center;    }
 </style>
 
 <body>
@@ -79,17 +92,17 @@
                         @endif
                         @else
                         <li class="nav-item">
-                            <a href="{{ route('posts.index') }}" class="nav-link">Articulos</a>
+                            <a href="{{ route('posts.index') }}" class="nav-link"><i class="bi bi-postcard-fill"></i>&nbsp; Articulos</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
+                                <i class="bi bi-person-fill"></i>&nbsp; {{ Auth::user()->name }}
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                <a class="logout dropdown-item c-black" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    <i class="bi bi-box-arrow-left"></i>&nbsp;{{ __('Logout') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
